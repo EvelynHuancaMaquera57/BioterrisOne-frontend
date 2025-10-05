@@ -1,0 +1,114 @@
+// src/app/components/header/header.component.scss
+.navbar { 
+   background-color: rgba(49,77, 9, 0.3); // Negro con 70% de opacidad
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px); // Efecto glass
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; // Centrado en lugar de space-between
+  align-items: center;
+  padding: 0 2rem;
+  position: relative; // Para posicionar el logo
+}
+
+.nav-logo {
+  position: absolute;
+  left: 2rem; // Logo a la izquierda
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.5rem;
+}
+
+.nasa-logo {
+  height: 70px; // Ajusta según el tamaño de tu logo
+  width: auto;
+}
+
+.logo-text {
+  color: white;
+  font-size: 1.2rem;
+
+  font-weight: 600;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  
+  &:hover {
+    background-color: rgba(52, 152, 219, 0.8);
+    transform: translateY(-2px);
+  }
+  
+  &.active {
+    background-color: #3498db;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .nav-container {
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  
+  .nav-logo {
+    position: static;
+  }
+  
+  .logo-text {
+    display: none; // Oculta el texto en móviles
+  }
+  
+  .nav-menu {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    gap: 0.5rem;
+  }
+  
+  .nav-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .nasa-logo {
+    height: 30px;
+  }
+}

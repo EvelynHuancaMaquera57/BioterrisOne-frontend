@@ -1,0 +1,71 @@
+<!-- src/app/components/contactanos/contactanos.component.html -->
+<div class="contact-container">
+  <div class="hero-section">
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+      
+      <!-- Título y subtítulo -->
+      <div class="title-section">
+        <h1 class="main-title-contact">BioterrisOne</h1>
+        <p class="tagline-contact">Data that transforms evidence into action</p>
+      </div>
+      
+      <!-- Contenedor dividido - INVERTIDO -->
+      <div class="contact-split-container">
+        
+        <!-- Panel izquierdo - Información (más pequeño) -->
+        <div class="contact-left-panel">
+          <div class="info-card">
+            <h3 class="info-title">Get in touch with the BioterrisOne team</h3>
+            
+            <div class="email-icon">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#2c3e50" stroke-width="2"/>
+                <path d="M22 6L12 13L2 6" stroke="#2c3e50" stroke-width="2"/>
+              </svg>
+            </div>
+            
+            <div class="team-info">
+              <p class="team-description">
+                We are a multidisciplinary team of medicine, psychology, and engineering students developing innovative solutions for sustainable cities.
+              </p>
+              <p class="collaborate-text">Let's collaborate!</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Panel derecho - Formulario (más grande y centrado) -->
+        <div class="contact-right-panel">
+          <div class="contact-form">
+            <h2 class="form-title-contact">Contact Us</h2>
+            
+            <form class="form-contact">
+              <div class="form-group-contact">
+                <label for="fullname" class="form-label-contact">Full Name</label>
+                <input type="text" id="fullname" class="form-input-contact" placeholder="Enter your full name" required>
+              </div>
+              
+              <div class="form-group-contact">
+                <label for="email" class="form-label-contact">Email Address</label>
+                <input type="email" id="email" class="form-input-contact" placeholder="Enter your email address" required>
+              </div>
+              
+              <div class="form-group-contact">
+                <label for="subject" class="form-label-contact">Subject</label>
+                <input type="text" id="subject" class="form-input-contact" placeholder="Enter the subject" required>
+              </div>
+              
+              <div class="form-group-contact">
+                <label for="message" class="form-label-contact">Message</label>
+                <textarea id="message" class="form-textarea-contact" placeholder="Enter your message" rows="5" required></textarea>
+              </div>
+              
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

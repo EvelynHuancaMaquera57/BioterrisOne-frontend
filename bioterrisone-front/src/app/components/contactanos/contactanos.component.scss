@@ -1,0 +1,391 @@
+.contact-container {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.hero-section {
+  min-height: 100vh;
+  background-image: url('/assets/images/home.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.content-wrapper {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 0;
+}
+
+/* Títulos CORREGIDOS */
+.title-section {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-title-contact {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Archivo Black", sans-serif;
+  color: rgb(157, 200, 96);
+  text-shadow: 
+    0 0 20px #33880b,
+    0 0 30px #33880b,
+    0 0 40px #33880b;
+  display: block; /* CAMBIADO A BLOCK */
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
+}
+
+.tagline-contact {
+  font-size: 1.4rem;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  color: white;
+  background-color: rgba(0, 74, 173, 0.3);
+  padding: 12px 20px;
+  border-radius: 4px;
+  display: block; /* CAMBIADO A BLOCK */
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
+}
+
+/* Contenedor dividido - MÁS COMPACTO */
+.contact-split-container {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Panel izquierdo - Información (MÁS PEQUEÑO) */
+.contact-left-panel {
+  flex: 0 0 280px;
+  margin-left: 0;
+}
+
+.info-card {
+  background-color: white;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  text-align: center;
+  height: auto;
+}
+
+.info-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.email-icon {
+  margin: 0.8rem 0;
+  
+  svg {
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.1));
+  }
+}
+
+.team-info {
+  margin-top: 0.8rem;
+}
+
+.team-description {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #2c3e50;
+  margin-bottom: 0.8rem;
+}
+
+.collaborate-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3498db;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Panel derecho - Formulario (MÁS PEQUEÑO) */
+.contact-right-panel {
+  flex: 1;
+  max-width: 450px;
+  margin-right: 0;
+}
+
+.contact-form {
+  background-color: rgba(49, 77, 9, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.form-title-contact {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: white;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
+.form-contact {
+  width: 100%;
+}
+
+.form-group-contact {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.form-label-contact {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Inputs más compactos */
+.form-input-contact {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #2c3e50;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  
+  &::placeholder {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: #3498db;
+    background-color: #ffffff;
+    box-shadow: 0 0 12px rgba(52, 152, 219, 0.4);
+  }
+}
+
+.form-textarea-contact {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #2c3e50;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 100px;
+  
+  &::placeholder {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: #3498db;
+    background-color: #ffffff;
+    box-shadow: 0 0 12px rgba(52, 152, 219, 0.4);
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  background-color: rgba(52, 152, 219, 0.9);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.8rem;
+  
+  &:hover {
+    background-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .contact-split-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 100%;
+  }
+  
+  .contact-left-panel {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 350px;
+    margin-left: 0;
+    order: 2;
+  }
+  
+  .contact-right-panel {
+    max-width: 100%;
+    margin-right: 0;
+    order: 1;
+  }
+  
+  .content-wrapper {
+    padding: 1rem;
+    max-width: 100%;
+  }
+  
+  .main-title-contact {
+    font-size: 2.2rem;
+  }
+  
+  .tagline-contact {
+    font-size: 1rem;
+  }
+  
+  .contact-form {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .form-title-contact {
+    font-size: 1.5rem;
+  }
+  
+  .info-card {
+    padding: 1.2rem;
+  }
+  
+  .info-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 70px;
+  }
+  
+  .main-title-contact {
+    font-size: 1.8rem;
+  }
+  
+  .tagline-contact {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  
+  .contact-form {
+    padding: 1.2rem 1rem;
+  }
+  
+  .form-title-contact {
+    font-size: 1.3rem;
+  }
+  
+  .form-input-contact,
+  .form-textarea-contact {
+    padding: 0.7rem 1rem;
+  }
+  
+  .submit-btn {
+    padding: 0.7rem 1.2rem;
+  }
+  
+  .info-card {
+    padding: 1rem 0.8rem;
+  }
+  
+  .info-title {
+    font-size: 1rem;
+  }
+  
+  .team-description {
+    font-size: 0.8rem;
+  }
+  
+  .collaborate-text {
+    font-size: 0.9rem;
+  }
+  
+  .email-icon svg {
+    width: 45px;
+    height: 45px;
+  }
+}

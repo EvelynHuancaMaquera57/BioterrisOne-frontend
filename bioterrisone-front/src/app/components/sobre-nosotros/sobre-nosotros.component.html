@@ -1,0 +1,126 @@
+<div class="about-container">
+  <div class="hero-section" [class.hero-section-left]="selectedContent">
+    <div class="overlay"></div>
+    <div class="content-wrapper" [class.content-wrapper-split]="selectedContent">
+      
+      <!-- Título y subtítulo -->
+      <div class="title-section" [class.title-section-hidden]="selectedContent">
+        <h1 class="main-title-about">BioterrisOne</h1>
+        <p class="tagline-about">Data that transforms evidence into action</p>
+      </div>
+      
+      <!-- Contenedor principal dividido -->
+      <div class="split-container" *ngIf="selectedContent; else menuTemplate">
+        
+        <!-- Panel izquierdo - Botones -->
+        <div class="left-panel">
+          <div class="about-menu-left">
+            <h2 class="menu-title-left">About Us</h2>
+            
+            <div class="buttons-container-left">
+              <button class="about-btn-left" 
+                      [class.active]="selectedContent === 'mission'"
+                      (click)="showContent('mission')">
+                Mission
+              </button>
+              
+              <button class="about-btn-left" 
+                      [class.active]="selectedContent === 'vision'"
+                      (click)="showContent('vision')">
+                Vision
+              </button>
+              
+              <button class="about-btn-left" 
+                      [class.active]="selectedContent === 'problem'"
+                      (click)="showContent('problem')">
+                The Problem We Address
+              </button>
+              
+              <button class="about-btn-left" 
+                      [class.active]="selectedContent === 'solution'"
+                      (click)="showContent('solution')">
+                Our Solution
+              </button>
+              
+              <button class="about-btn-left" 
+                      [class.active]="selectedContent === 'why'"
+                      (click)="showContent('why')">
+                Why BioterrisOne
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Panel derecho - Contenido -->
+        <div class="right-panel">
+          <div class="content-card-right">
+            <div class="content-text-right" [ngSwitch]="selectedContent">
+              
+              <div *ngSwitchCase="'mission'" class="content-text">
+                <h3>Mission</h3>
+                <p>Our mission is to transform NASA satellite data into actionable insights for environmental health and risk assessment at the district level. We bridge the gap between complex scientific data and practical application.</p>
+                <p>By making environmental risk data accessible and understandable, we empower communities to make informed decisions about their health and environment.</p>
+              </div>
+              
+              <div *ngSwitchCase="'vision'" class="content-text">
+                <h3>Vision</h3>
+                <p>To create a world where environmental data is accessible and understandable for everyone, empowering communities to make informed decisions about their health and environment.</p>
+                <p>We envision a future where every community has the tools to understand and mitigate environmental risks effectively.</p>
+              </div>
+              
+              <div *ngSwitchCase="'problem'" class="content-text">
+                <h3>The Problem We Address</h3>
+                <p>Environmental risks and their impact on public health are often invisible and poorly understood. Communities lack access to clear, scientific data about environmental threats in their specific areas.</p>
+                <p>This information gap prevents effective planning, policy-making, and individual decision-making regarding environmental health risks.</p>
+              </div>
+              
+              <div *ngSwitchCase="'solution'" class="content-text">
+                <h3>Our Solution</h3>
+                <p>BioterrisOne converts complex NASA satellite data into intuitive visualizations and clear information about environmental risks and their health impacts, making scientific data accessible to all.</p>
+                <p>Our platform provides district-level insights that help urban planners, researchers, and citizens understand and address environmental health challenges.</p>
+              </div>
+              
+              <div *ngSwitchCase="'why'" class="content-text">
+                <h3>Why BioterrisOne</h3>
+                <p>We bridge the gap between scientific data and practical application, providing tools that help urban planners, researchers, and citizens understand and address environmental health challenges.</p>
+                <p>Our unique approach combines NASA satellite data with local health impact analysis, creating a comprehensive environmental risk assessment tool.</p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <ng-template #menuTemplate>
+        <!-- Menú original (centrado) cuando no hay selección -->
+        <div class="about-menu">
+          <h2 class="menu-title">About Us</h2>
+          
+          <div class="buttons-container">
+            <button class="about-btn" (click)="showContent('mission')">
+              Mission
+            </button>
+            
+            <button class="about-btn" (click)="showContent('vision')">
+              Vision
+            </button>
+            
+            <button class="about-btn" (click)="showContent('problem')">
+              The Problem We Address
+            </button>
+            
+            <button class="about-btn" (click)="showContent('solution')">
+              Our Solution
+            </button>
+            
+            <button class="about-btn" (click)="showContent('why')">
+              Why BioterrisOne
+            </button>
+          </div>
+        </div>
+      </ng-template>
+      
+    </div>
+  </div>
+</div>

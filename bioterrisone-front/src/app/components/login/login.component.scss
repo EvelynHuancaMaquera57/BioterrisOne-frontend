@@ -1,0 +1,269 @@
+// src/app/components/login/login.component.scss
+.login-container {
+  min-height: 100vh; // Cambia de height a min-height para permitir scroll
+  margin: 0;
+  padding: 0;
+  overflow: visible; // Permite scroll
+}
+
+.hero-section {
+  min-height: 100vh; // Cambia a min-height
+  background-image: url('/assets/images/home.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: flex-start; // Cambia de center a flex-start
+  justify-content: center;
+  padding-top: 80px; // Espacio para el header fijo
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.content-wrapper {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+  padding: 2rem; // Más padding
+  width: 100%;
+  max-width: 800px;
+  margin-top: 2rem; // Empuja el contenido más abajo
+}
+
+/* Sección del título */
+.title-section {
+  margin-bottom: 4rem; // Espacio grande entre título y formulario
+}
+
+/* Estilos del título */
+.main-title-login {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Archivo Black", sans-serif;
+  color: rgb(157, 200, 96);
+  text-shadow: 
+    0 0 20px #33880b,
+    0 0 30px #33880b,
+    0 0 40px #33880b;
+  display: inline-block;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+  }
+}
+
+/* Estilos del tagline */
+.tagline-login {
+  font-size: 1.8rem;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  color: white;
+  background-color: rgba(0, 74, 173, 0.3);
+  padding: 15px 25px;
+  border-radius: 4px;
+  display: inline-block;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
+}
+
+/* Formulario de login - ahora está más abajo */
+.login-form {
+  background-color: rgba(49, 77, 9, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-sizing: border-box;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: rgba(52, 152, 219, 0.8);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+  }
+}
+
+.login-btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: rgba(52, 152, 219, 0.8);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  
+  &:hover {
+    background-color: rgba(52, 152, 219, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+  }
+}
+
+.register-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-text {
+  font-family: "Source Sans 3", sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.register-link {
+  color: #3498db;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #2980b9;
+    text-decoration: underline;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .title-section {
+    margin-bottom: 3rem;
+  }
+  
+  .main-title-login {
+    font-size: 3rem;
+  }
+  
+  .tagline-login {
+    font-size: 1.2rem;
+  }
+  
+  .login-form {
+    padding: 2rem 1.5rem;
+    max-width: 350px;
+  }
+  
+  .form-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 70px;
+  }
+  
+  .main-title-login {
+    font-size: 2.5rem;
+  }
+  
+  .tagline-login {
+    font-size: 1.1rem;
+    padding: 10px 15px;
+  }
+  
+  .login-form {
+    padding: 1.5rem 1rem;
+    max-width: 300px;
+  }
+  
+  .form-title {
+    font-size: 1.6rem;
+  }
+  
+  .form-input {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .login-btn {
+    padding: 0.8rem 1.5rem;
+  }
+}

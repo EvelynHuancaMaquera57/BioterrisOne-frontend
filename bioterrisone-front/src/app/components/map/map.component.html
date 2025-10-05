@@ -1,0 +1,115 @@
+<!-- src/app/components/map/map.component.html -->
+<div class="map-container">
+  <!--<div class="map-overlay" [class.show]="selectedDepartment" (click)="closePanel()"></div> -->
+  
+  <div class="hero-section">
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+      
+      <!-- Solo el mapa -->
+      <div class="map-wrapper">
+        <!-- Mapa Leaflet -->
+        <div id="map" class="leaflet-map"></div>
+        
+        <!-- Panel de información - SOLO BOTONES -->
+        <div class="info-panel" 
+             [class.show]="selectedDepartment" 
+             [class.category-details-open]="currentCategory">
+          <div class="panel-header">
+            <h3>{{ selectedDepartment?.name || 'Select a Department' }}</h3>
+            <button class="close-btn" (click)="closePanel()">×</button>
+          </div>
+          
+          <div class="panel-content" *ngIf="selectedDepartment">
+            
+            <!-- Vista 1: SOLO BOTONES DE CATEGORÍAS (se muestra directamente) -->
+            <div class="detailed-view" *ngIf="!currentCategory">
+              <div class="view-header">
+                <h4>Select Analysis Category</h4>
+                <p class="category-subtitle">Choose a category to view detailed environmental data</p>
+              </div>
+              
+              <div class="category-buttons">
+                <button class="category-btn air-btn" (click)="openCategory('air')">
+                  <span class="btn-text">Air Quality</span>
+                </button>
+                
+                <button class="category-btn water-btn" (click)="openCategory('water')">
+                  <span class="btn-text">Water & Resources</span>
+                </button>
+                
+                <button class="category-btn vegetation-btn" (click)="openCategory('vegetation')">
+                  <span class="btn-text">Vegetation & Soil</span>
+                </button>
+                
+                <button class="category-btn climate-btn" (click)="openCategory('climate')">
+                  <span class="btn-text">Climate & Meteorology</span>
+                </button>
+                
+                <button class="category-btn atmosphere-btn" (click)="openCategory('atmosphere')">
+                  <span class="btn-text">Atmosphere & Sky</span>
+                </button>
+                
+                <button class="category-btn ods-btn" (click)="openCategory('ods11')">
+                  <span class="btn-text">Learn about ODS 11</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Vista 2: Detalles de categoría específica -->
+            <div class="category-details" *ngIf="currentCategory && categoryData">
+              <div class="view-header">
+                <button class="back-btn" (click)="closeCategory()">
+                  ← Back to Categories
+                </button>
+                <h4>{{ categoryData.title }}</h4>
+              </div>
+              
+              <div class="category-content">
+                
+                <!-- Descripción arriba -->
+                <div class="category-description-section">
+                  <p class="category-description">{{ categoryData.description }}</p>
+                </div>
+                
+                <!-- Contenedor para indicadores y mapa lado a lado -->
+                <div class="indicators-map-container">
+                  <!-- Indicadores a la izquierda -->
+                  <div class="data-section">
+                    <h5>Key Metrics</h5>
+                    <div class="metrics-grid">
+                      <div class="metric-item" 
+                           *ngFor="let metric of categoryData.keyMetrics"
+                           [class]="'metric-level-' + metric.level">
+                        <span class="metric-name">{{ metric.name }}:</span>
+                        <span class="metric-value">{{ metric.value }}</span>
+                        
+                        <button class="health-details-btn" 
+                                (click)="openHealthDetails()">
+                          View Details
+                        </button>
+                        
+                        <span class="metric-indicator" [class]="'indicator-' + metric.level"></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Mapa a la derecha -->
+                  <div class="department-map-container" *ngIf="selectedDepartment">
+                    <button class="simulate-btn" (click)="simulateIntervention()">
+                      <span class="btn-icon">🚀</span>
+                      Simulate Intervention
+                    </button>
+                    <div id="department-map" class="department-map"></div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
