@@ -2,21 +2,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Import Leaflet
-import * as L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
-
-
-
-
-// Fix para iconos de Leaflet
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
+declare var L: any;
 
 interface Department {
   name: string;
@@ -44,8 +30,8 @@ interface CategoryData {
   styleUrl: './map.component.scss'
 })
 export class MapComponent implements OnInit, OnDestroy {
-  private map: L.Map | undefined;
-  private departmentMap: L.Map | undefined; // NUEVO: mapa del departamento
+  private map: any;
+  private departmentMap: any;
   selectedDepartment: Department | null = null;
   showDetailedView: boolean = false;
   currentCategory: string | null = null;
@@ -314,13 +300,29 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.map) {
       this.map.remove();
     }
-    // NUEVO: Limpiar el mapa del departamento también
     if (this.departmentMap) {
       this.departmentMap.remove();
     }
   }
 
   private initMap(): void {
+    // Verificar que Leaflet esté cargado
+    if (typeof L === 'undefined') {
+      console.error('Leaflet no está cargado. Verifica la CDN en index.html');
+      setTimeout(() => {
+        this.initMap();
+      }, 100);
+      return;
+    }
+
+    // Fix para iconos de Leaflet - DENTRO del método
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    });
+
     this.map = L.map('map').setView([-9.1900, -75.0152], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -364,7 +366,7 @@ export class MapComponent implements OnInit, OnDestroy {
       });
 
       const marker = L.marker(dept.coordinates, { icon: customIcon })
-        .addTo(this.map!)
+        .addTo(this.map)
         .bindTooltip(`
           <div style="text-align: center;">
             <strong>${dept.name}</strong><br>
@@ -375,8 +377,10 @@ export class MapComponent implements OnInit, OnDestroy {
           direction: 'top'
         });
 
-      marker.on('click', (e) => {
-        e.originalEvent?.stopPropagation();
+        marker.on('click', (e: any) => {
+        if (e.originalEvent) {
+          e.originalEvent.stopPropagation();
+        }
         this.selectDepartment(dept.name);
       });
 
@@ -410,7 +414,6 @@ export class MapComponent implements OnInit, OnDestroy {
     this.currentCategory = null;
     this.categoryData = null;
     
-    // NUEVO: Limpiar el mapa del departamento
     if (this.departmentMap) {
       this.departmentMap.remove();
       this.departmentMap = undefined;
@@ -423,14 +426,12 @@ export class MapComponent implements OnInit, OnDestroy {
     this.currentCategory = category;
     this.categoryData = this.categoryDetails[category](this.selectedDepartment);
     
-    // Forzar un pequeño delay para que Angular actualice la vista
     setTimeout(() => {
       const panel = document.querySelector('.info-panel');
       if (panel) {
         panel.classList.add('category-details-open');
       }
       
-      // NUEVO: Inicializar el mapa del departamento después de que se muestre el panel
       this.initDepartmentMap();
     }, 50);
   }
@@ -439,18 +440,15 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log('Health details clicked');
   }
 
-  // AGREGA EL MÉTODO simulateIntervention AQUÍ
-simulateIntervention(): void {
-  console.log('Simulate intervention clicked for:', this.selectedDepartment?.name);
-  // Aquí puedes agregar la lógica para simular intervenciones
-  alert(`Simulating intervention for ${this.selectedDepartment?.name}\nThis would show predictive models and potential outcomes.`);
-}
+  simulateIntervention(): void {
+    console.log('Simulate intervention clicked for:', this.selectedDepartment?.name);
+    alert(`Simulating intervention for ${this.selectedDepartment?.name}\nThis would show predictive models and potential outcomes.`);
+  }
 
   closeCategory(): void {
     this.currentCategory = null;
     this.categoryData = null;
     
-    // NUEVO: Destruir el mapa del departamento cuando se cierra la categoría
     if (this.departmentMap) {
       this.departmentMap.remove();
       this.departmentMap = undefined;
@@ -459,21 +457,18 @@ simulateIntervention(): void {
 
   // NUEVO: Método para inicializar el mapa del departamento
   private initDepartmentMap(): void {
-    // Esperar a que el DOM se actualice
     setTimeout(() => {
       const mapContainer = document.getElementById('department-map');
       
       if (!mapContainer || !this.selectedDepartment) return;
       
-      // Limpiar mapa anterior si existe
       if (this.departmentMap) {
         this.departmentMap.remove();
       }
       
-      // Crear nuevo mapa
       this.departmentMap = L.map('department-map').setView(
         this.selectedDepartment.coordinates, 
-        9 // Zoom más cercano para el departamento
+        9
       );
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -481,7 +476,6 @@ simulateIntervention(): void {
         maxZoom: 13
       }).addTo(this.departmentMap);
 
-      // Agregar marcador del departamento
       const riskColors = {
         low: '#27ae60',
         medium: '#f39c12', 
@@ -511,7 +505,6 @@ simulateIntervention(): void {
           </div>
         `);
 
-      // Ajustar el tamaño del mapa
       setTimeout(() => {
         this.departmentMap?.invalidateSize();
       }, 100);
@@ -730,4 +723,4 @@ simulateIntervention(): void {
     };
     return progress[department] || '50% Complete';
   }
-} 
+}
